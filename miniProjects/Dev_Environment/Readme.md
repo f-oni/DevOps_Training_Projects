@@ -34,14 +34,19 @@ The installed *Git* interfaces are shown below
 
 ![Git Configuration interface](/miniProjects/Dev_Environment/screenshots/local_git_configuration.png)
 
-(iii) **Oracle virtual box**
+(iii) **MobaXterm**
+
+MobaXterm interface is shown below:
+![MobaXterm](/miniProjects/Dev_Environment/screenshots/MobaXterm.png)
+
+(iv) **Oracle virtual box**
 
 The Oracle virtual box installed for the project is shown in the picture below:
 
 ![Oraccle VM Screenahot](/miniProjects/Dev_Environment/screenshots/Oracle_VM.png)
 
 
-(iv) **Ubuntu**
+(v) **Ubuntu**
 
 Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are shown below:
 
@@ -49,7 +54,7 @@ Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are show
 
 ![Ubuntu Terminal](/miniProjects/Dev_Environment/screenshots/Ubuntu_terminal.png)
 
-## Required Applications Account
+## Recommended Applications Account
 
 (i) **GITHUB Account**
 
