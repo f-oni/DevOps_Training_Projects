@@ -49,7 +49,7 @@ Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are show
 
 ![Ubuntu Terminal](/miniProjects/Dev_Environment/screenshots/Ubuntu_terminal.png)
 
-## Application Accounts
+## Required Applications Account
 
 (i) **GITHUB Account**
 
