@@ -23,30 +23,31 @@ The following environments have been prepared for the smooth DevOps learning exp
 
 The screenshot below shows the welcome page of the installed *Visual Studio Code*
 
-![Vscode page](/Dev_Environment/screenshots/Vscode_welcome_page.png)
+![VScode](/miniProjects/Dev_Environment/screenshots/Vscode_welcome_page.png)
+
 
 (ii) **Local Git**
 
 The installed *Git* interfaces are shown below
 
-![Git interface](/Dev_Environment/screenshots/local%20git%20version.png)
+![Git interface](/miniProjects/Dev_Environment/screenshots/local_git_version.png)
 
-![Git Configuration interface](/Dev_Environment/screenshots/local%20git%20configuration.png)
+![Git Configuration interface](/miniProjects/Dev_Environment/screenshots/local_git_configuration.png)
 
 (iii) **Oracle virtual box**
 
 The Oracle virtual box installed for the project is shown in the picture below:
 
-![Oraccle VM Screenahot](/Dev_Environment/screenshots/Oracle_VM.png)
+![Oraccle VM Screenahot](/miniProjects/Dev_Environment/screenshots/Oracle_VM.png)
 
 
 (iv) **Ubuntu**
 
 Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are shown below:
 
-![Ubuntu GUI](/Dev_Environment/screenshots/Ubuntu%20GUI.png)
+![Ubuntu GUI](/miniProjects/Dev_Environment/screenshots/Ubuntu%20GUI.png)
 
-![Ubuntu Terminal](/Dev_Environment/screenshots/Ubuntu_terminal.png)
+![Ubuntu Terminal](/miniProjects/Dev_Environment/screenshots/Ubuntu_terminal.png)
 
 ## Application Accounts
 
@@ -54,16 +55,16 @@ Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are show
 
 The Github account page is shown below:
 
-![GitHub Account](/Dev_Environment/screenshots/Github_Account.png)
+![GitHub Account](/miniProjects/Dev_Environment/screenshots/Github_Account.png)
 
 
 (ii) **Amazon Web services(AWS) account**
 
 The AWS account created is displayeed below: 
 
-![AWS Account](/Dev_Environment/screenshots/AWS_homepage.png)
+![AWS Account](/miniProjects/Dev_Environment/screenshots/AWS_homepage.png)
 
-![AWS_all_services](/Dev_Environment/screenshots/AWS_All%20services_page.png)
+![AWS_all_services](/miniProjects/Dev_Environment/screenshots/AWS_all_services_page.png)
 
 # Conclusion
 
