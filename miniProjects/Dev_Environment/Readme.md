@@ -68,7 +68,7 @@ The AWS account created is displayeed below:
 
 # Conclusion
 
-The required tools and recommended acconuts were created during the project.
+The required tools and recommended accounts were created as per the reqirements to get started with DevOps environment.
 
 
 
