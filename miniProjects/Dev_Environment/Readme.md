@@ -69,7 +69,7 @@ The AWS account created is displayeed below:
 
 ![AWS management console](https://github.com/f-oni/DevOps_Training_Projects/blob/c4436a9d0da556822b0a685d270d16186da98fb8/miniProjects/Dev_Environment/AWS_homepage.png)
 
-![AWS_all_services](/miniProjects/Dev_Environment/screenshots/AWS_all_services_page.png)
+![AWS_management console image](https://github.com/f-oni/DevOps_Training_Projects/blob/9f5892808fdf7e6a501a77006e905e2ea281066c/miniProjects/Dev_Environment/AWS_console.png)
 
 # Conclusion
 
