@@ -30,7 +30,7 @@ The screenshot below shows the welcome page of the installed *Visual Studio Code
 
 The installed *Git* interfaces are shown below
 
-![Git interface](/miniProjects/Dev_Environment/screenshots/local_git_version.png)
+![Git Version](https://github.com/f-oni/DevOps_Training_Projects/blob/4faf47b3062f6e6a900904d0ab94fb7645abcd97/miniProjects/Dev_Environment/local_git_version.png)
 
 ![Git Configuration interface](/miniProjects/Dev_Environment/screenshots/local_git_configuration.png)
 
