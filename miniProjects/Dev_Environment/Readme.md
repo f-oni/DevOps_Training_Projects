@@ -67,7 +67,7 @@ The Github account page is shown below:
 
 The AWS account created is displayeed below: 
 
-![AWS Account](/miniProjects/Dev_Environment/screenshots/AWS_homepage.png)
+![AWS management console](https://github.com/f-oni/DevOps_Training_Projects/blob/c4436a9d0da556822b0a685d270d16186da98fb8/miniProjects/Dev_Environment/AWS_homepage.png)
 
 ![AWS_all_services](/miniProjects/Dev_Environment/screenshots/AWS_all_services_page.png)
 
