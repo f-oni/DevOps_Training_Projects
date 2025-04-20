@@ -60,7 +60,7 @@ Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are show
 
 The Github account page is shown below:
 
-![GitHub Account](/miniProjects/Dev_Environment/screenshots/Github_Account.png)
+![GitHub Dashboard image](https://github.com/f-oni/DevOps_Training_Projects/blob/e89ebdba3a3df2e3a77feba2bf5a3205bf20e16f/miniProjects/Dev_Environment/Github_Account.png)
 
 
 (ii) **Amazon Web services(AWS) account**
