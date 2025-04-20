@@ -52,7 +52,7 @@ Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are show
 
 ![Ubuntu GUI](/miniProjects/Dev_Environment/screenshots/Ubuntu%20GUI.png)
 
-![Ubuntu Terminal](/miniProjects/Dev_Environment/screenshots/Ubuntu_terminal.png)
+![Ubuntu inside virtual box](https://github.com/f-oni/DevOps_Training_Projects/blob/ec77b05f5eb31e01cb38a0de518e7e45e71c2d8c/miniProjects/Dev_Environment/Ubuntu_terminal.png)
 
 ## Recommended Applications Account
 
