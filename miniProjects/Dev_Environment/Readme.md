@@ -50,7 +50,7 @@ The Oracle virtual box installed for the project is shown in the picture below:
 
 Ubuntu 22.4 was installed on the virtual box. Both the GUI and terminal are shown below:
 
-![Ubuntu GUI](/miniProjects/Dev_Environment/screenshots/Ubuntu%20GUI.png)
+![Ubuntu login prompt image](https://github.com/f-oni/DevOps_Training_Projects/blob/9b0348579edf25676edf1e87604313902dda643e/miniProjects/Dev_Environment/Ubuntu%20%20login%20prompt.png)
 
 ![Ubuntu inside virtual box](https://github.com/f-oni/DevOps_Training_Projects/blob/ec77b05f5eb31e01cb38a0de518e7e45e71c2d8c/miniProjects/Dev_Environment/Ubuntu_terminal.png)
 
