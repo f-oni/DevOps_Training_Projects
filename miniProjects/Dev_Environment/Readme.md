@@ -43,7 +43,7 @@ MobaXterm interface is shown below:
 
 The Oracle virtual box installed for the project is shown in the picture below:
 
-![Oraccle VM Screenahot](/miniProjects/Dev_Environment/screenshots/Oracle_VM.png)
+![Oraccle Virtual Box Screenahot](https://github.com/f-oni/DevOps_Training_Projects/blob/e141459ad0c77acab0ae15d632c2cbe4f1a35893/miniProjects/Dev_Environment/Oracle_VM.png)
 
 
 (v) **Ubuntu**
