@@ -23,7 +23,7 @@ The following environments have been prepared for the smooth DevOps learning exp
 
 The screenshot below shows the welcome page of the installed *Visual Studio Code*
 
-![VScode](/miniProjects/Dev_Environment/screenshots/Vscode_welcome_page.png)
+![Visual Studio Code](https://github.com/f-oni/DevOps_Training_Projects/blob/70bf22be50f3db751164f21b2f9b19a13d68ae54/miniProjects/Dev_Environment/Vscode_welcome_page.png)
 
 
 (ii) **Local Git**
