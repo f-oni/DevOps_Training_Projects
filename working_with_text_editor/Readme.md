@@ -56,9 +56,8 @@ The project fouses on how to use the two most popular text editors on Linux. Vim
 
    ![line deletion undone](https://github.com/user-attachments/assets/7a87b22e-ef3a-470d-8737-60243ae5cc5e)
 
-   **:wq** was used to write or save the changes and quit the program.
+   **:wq** was used to write or save the changes and quit the program. And thus, reutured to the terminal
 
-   The above key combination brought us back to the terminal
 
    ![image](https://github.com/user-attachments/assets/a8906acf-3e01-4744-a909-849efd6c37a5)
 
@@ -68,9 +67,59 @@ The project fouses on how to use the two most popular text editors on Linux. Vim
 
    ## The Nano Editor
 
-   The launch the editor and create a new file, the following was entered to the terminal: **nano nano_file.txt**
+   To launch the nano editor and create a new file named "nano_file.txt", the following was entered to the terminal: **nano nano_file.txt**
 
    ![image](https://github.com/user-attachments/assets/7efa5cc4-d752-4837-85dc-c78b55540564)
+
+   The interface is as shown below:
+
+   ![image](https://github.com/user-attachments/assets/274eae34-0547-4840-86b0-3ac64fd01a06)
+
+   The following lines of text were entered to the editor:
+   *Hello, welcome to DevOps class.
+   We are learning very fast.*
+
+   ![image](https://github.com/user-attachments/assets/ca2450fb-40c1-4f86-bd8d-2c99cf55254a)
+
+   The arrow keys on the keyboard were used to move the cursor up, down, left and right. The backspace key was used for deletion of characters.
+
+   ![image](https://github.com/user-attachments/assets/235f6d76-f065-4165-b3b5-b984cc89578d)
+
+  - **ctlr + o** was used to save the changes.
+
+    ![image](https://github.com/user-attachments/assets/66a05860-28b5-4b89-af32-d66e47ecc41c)
+    
+  - **ctlr + x** was used to exit the nano program and returned to the terminal
+    
+    ![image](https://github.com/user-attachments/assets/828299a1-066f-49f4-a237-78d136078393)
+
+ The existing *nano_file.txt* was re-accessed by using the command **nano nano_file.txt**
+
+ ![image](https://github.com/user-attachments/assets/da7233bc-05fd-4ae6-adfc-df26a180673f)
+
+ A third line was added: "The projects are interesting!"
+
+ ![image](https://github.com/user-attachments/assets/82e203c6-2733-495a-b3c1-0b21d3a989da)
+
+ **ctlr + x** was used to exit the nano program without saving but there was a prompt that requested confirmation to either save or discard the changes in form of "Yes" or "No". The "Y" option was selected to save the work and exit the nano program.
+
+ ![image](https://github.com/user-attachments/assets/a8b4fb2d-d42d-436e-8747-7402db60a515)
+
+ ## Conclusion
+ The project made it possible to get better familiarity with the vim and nano text editors. file creation, text entry/insertion, editing existing files, saving and gracefully exiting the programs were thoroughly explored for each of the editors.
+
+
+ 
+
+
+
+
+
+   
+
+
+
+
 
 
    
