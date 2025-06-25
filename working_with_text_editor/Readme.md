@@ -12,13 +12,13 @@ The project fouses on how to use the two most popular text editors on Linux. Vim
 
  ![image](https://github.com/user-attachments/assets/d09a7f39-9df1-4c97-8b85-e3b54db681de)
 
- The letter **i** on the keyboard was used to enter the insert mode
+ The letter **i** on the keyboard was used to get into the insert mode
  
  ![image](https://github.com/user-attachments/assets/0194f063-c4dc-43a3-9de4-df0591cbd904)
 
- The following texts were entered in the insert mode as shown below:
- Hello, this is a vim hands-on project.
- Welcome to derey.io.
+ The following lines of text were entered in the insert mode as shown below:
+ *Hello, this is a vim hands-on project.
+ Welcome to derey.io.*
 
  ![image](https://github.com/user-attachments/assets/7cf98144-e534-46e3-9544-013540a2adcf)
 
