@@ -53,12 +53,115 @@ The password for johndoe was changed with the command: **sudo passwd johndoe**. 
 
 ![image](https://github.com/user-attachments/assets/345b1994-b611-4a00-b0fe-1eae5079d160)
 
-## Creating a Group
+## Creating a Group, adding a member and deleting a user
  A group named "developers" was created with the command: **sudo groupadd developers**.
 
  ![image](https://github.com/user-attachments/assets/a80e4e2e-e0f5-4429-be41-c0590bf1c4d6)
 
- johndoe was added to the newly created group with the command: **sudo usermod -aG developers 
+ johndoe was added to the developers group with the command: **sudo usermod -aG developers. Johndoe's group membership was verified with the **id johndoe** command 
+
+ ![image](https://github.com/user-attachments/assets/8b146559-3fbe-4deb-b93c-eb6f42173420)
+
+ The user johndoe was deleted using the command **sudo userdel johndoe** and the deletion was confirmed with **id johndoe** which returned "No such user".
+
+ ![image](https://github.com/user-attachments/assets/7480a94f-fdb8-49db-a769-26b48380e1f0)
+
+ ## Side Hustle Task 3
+
+ A group with the name "devops" was created with **sudo groupadd devops**  and verified using **getent group devops**.
+ 
+ ![image](https://github.com/user-attachments/assets/d7fe14de-6d4d-42e6-a71c-abad55842bdd)
+
+ Five users were created with the following command:
+ - **sudo adduser mary**
+ - **sudo adduser mohammed**
+ - **sudo adduser ravi**
+ - **sudo adduser tunji**
+ - **sudo adduser sofia**
+The multiple users created was verified with the command **tail /etc/passwd**
+
+![image](https://github.com/user-attachments/assets/aebe67d5-6fc0-4bf2-8ee1-001e9010cae5)
+
+Each of the user was added to the devops group with the command:
+
+- **sudo usermod -aG devops mary**
+- **sudo usermod -aG devops mohammed**
+- **sudo usermod -aG devops ravi**
+- **sudo usermod -aG devops tunji**
+- **sudo usermod -aG devops sofia**
+
+![image](https://github.com/user-attachments/assets/41bbe754-6fc2-411c-940d-d65bd1e777e3)
+
+### Mary
+
+1. Mary's account was switched to by using **su mary**.
+2. A directory named folder_mary was created in her home directory(*/home/mary*).
+3. The current permission and group ownership on the directory was checked with the command **ls -la**.
+4. The group ownership of the directory was changed with the command: **sudo chown /home/mary/folder_mary**.
+5. Read and write permissions were granted to the group with the command: **sudo chmod g+rw /home/mary/folder_mary**.
+
+![image](https://github.com/user-attachments/assets/337d896b-fd1c-4179-a1ab-833a7bd816f3)
+
+![image](https://github.com/user-attachments/assets/a293aa77-2e99-4a3a-b418-f0eb9f7d4640)
+
+### Mohammed
+
+1. Mary's account was switched to by using **su mohammed**.
+2. A directory named folder_mary was created in her home directory(*/home/mohammed*).
+3. The current permission and group ownership on the directory was checked with the command **ls -la**.
+4. The group ownership of the directory was changed with the command: **sudo chown /home/mohammed/folder_mohammed**.
+5. Read and write permissions were granted to the group with the command: **sudo chmod g+rw /home/mohammed/folder_mohammed**.
+
+![image](https://github.com/user-attachments/assets/19a831e7-845d-4267-8085-6d92042bffd2)
+
+
+### ravi
+
+1. Mary's account was switched to by using **su ravi**.
+2. A directory named folder_mary was created in her home directory(*/home/ravi*).
+3. The current permission and group ownership on the directory was checked with the command **ls -la**.
+4. The group ownership of the directory was changed with the command: **sudo chown /home/ravi/folder_ravi**.
+5. Read and write permissions were granted to the group with the command: **sudo chmod g+rw /home/ravi/folder_ravi**.
+
+![image](https://github.com/user-attachments/assets/328f8d02-58ed-4503-a995-13e68d835375)
+
+
+### tunji
+
+1. Mary's account was switched to by using **su tunji**.
+2. A directory named folder_mary was created in her home directory(*/home/tunji*).
+3. The current permission and group ownership on the directory was checked with the command **ls -la**.
+4. The group ownership of the directory was changed with the command: **sudo chown /home/tunji/folder_tunji**.
+5. Read and write permissions were granted to the group with the command: **sudo chmod g+rw /home/tunji/folder_tunji**.
+
+   ![image](https://github.com/user-attachments/assets/f753dd8c-acba-4019-a17c-333c907aaea8)
+
+
+### sofia
+
+1. Mary's account was switched to by using **su sofia**.
+2. A directory named folder_mary was created in her home directory(*/home/sofia*).
+3. The current permission and group ownership on the directory was checked with the command **ls -la**.
+4. The group ownership of the directory was changed with the command: **sudo chown /home/sofia/folder_sofia**.
+5. Read and write permissions were granted to the group with the command: **sudo chmod g+rw /home/sofia/folder_sofia**.
+
+   ![image](https://github.com/user-attachments/assets/6d63d427-18f8-44ae-8ea6-91863eaa4818)
+
+
+   ## Conclusion
+   
+   The project help to demonstrate the server administrator's routine tasks. File permission, user account creation and user management, administrative privileges were some of the tasks performed during the project execution.    
+
+
+
+
+
+
+
+
+
+ 
+
 
 
 
