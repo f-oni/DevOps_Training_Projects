@@ -32,7 +32,7 @@ The code logic to achieve the task is shown below:
 	
 	ENVIRONMENT=$1
 	
-	check_num_of_args() {"\n# Checking the number of arguments\n if[ \"$#\" -eq 0 ];
+	check_num_of_args() {"\n# Checking the number of arguments\n if [ \"$#\" -eq 0 ];
 	 then\n   echo\"Usage: $0 <environment>\"\n  exit 1\n fi\n"}
 	 
 	 check_num_of_args()
@@ -65,7 +65,7 @@ The above code was better refactored and encapsulated into functions as shown be
 	
 	ENVIRONMENT=$1
 	
-	check_num_of_args() {"\n# Checking the number of argumens\n if[ \"$#\" -eq 0 ];
+	check_num_of_args() {"\n# Checking the number of argumens\n if [ \"$#\" -eq 0 ];
 	 then\n   echo\"Usage: $0 <environment>\"\n  exit 1\n fi\n"}
 	 
 	 activate_infra_environment() {"# Acting based on thr argument value\n if [ \"$ENVIRONMENT\" == \"local\" ]; then\n echo \"Running script for local Environment...\"\n elif [ \"$ENVIRONMENT\" == \"testing\" ]; then\n echo \"Running script for Testing Environment...\"\n elif [ \"$ENVIRONMENT\" == \"production\" ]; then\n echo \"Running script for production Environment...\"\n else\n echo \"Invalid environment specified. Please, use 'local', 'testing', or 'production'.\"\n exit 2\nfi\n"}
@@ -85,7 +85,7 @@ A function to meet the need is shown below:
    #!/bin/bash
 
    check_aws_cli() {"\n if ! command -v aws &> /dev/null; then\n   echo \"AWS CLI is not installed.
-   Please install it before proceeding.\"\n return 1\n   fi\n" }
+   Please install it before proceeding.\"\n exit 3\n   fi\n" }
 
    check_aws_cli
 
@@ -105,7 +105,7 @@ A function for the task is shown below:
    #!/bin/bash
 
    check_aws_profile() {"\n  if [ -z \"$AWS_PROFILE\" ]; then\n   echo \"AWS profile
-   environment variable is not set.\"\n     return 1\n  fi\n"}
+   environment variable is not set.\"\n     exit 4\n  fi\n"}
 
    check_aws_profile
 
@@ -124,7 +124,7 @@ The combined functions for the requirments is shown below. The function calls ha
 	
 	ENVIRONMENT=$1
 	
-	check_num_of_args() {"\n# Checking the number of argumens\n if[ \"$#\" -eq 0 ];
+	check_num_of_args() {"\n# Checking the number of argumens\n if [ \"$#\" -eq 0 ];
 	 then\n   echo\"Usage: $0 <environment>\"\n  exit 1\n fi\n"}
 	 
 	activate_infra_environment() {"# Acting based on thr argument value\n if [ \"$ENVIRONMENT\" == \"local\" ]; then\n echo \"Running script for local Environment...\"\n elif [ \"$ENVIRONMENT\" == \"testing\" ]; then\n echo \"Running script for Testing Environment...\"\n elif [ \"$ENVIRONMENT\" == \"production\" ]; then\n echo \"Running script for production Environment...\"\n else\n echo \"Invalid environment specified. Please, use 'local', 'testing', or 'production'.\"\n exit 2\nfi\n"}
