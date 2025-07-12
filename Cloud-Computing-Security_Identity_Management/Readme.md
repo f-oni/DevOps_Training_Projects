@@ -4,12 +4,12 @@ The project demonstrates how to configure security and identity management in a 
 
 ## Zappy e-Bank Team
 
-Zappy e-Bank is a hypothetical fintech startup company that has taken advatage of cloud technology to roll out its operations and services. Two teams would be utilizing AWS cloud services for their operations. The teams are: 
+Zappy e-Bank is a hypothetical fintech startup company that has taken advantage of cloud technology to roll out its operations and services. Two teams would be utilizing AWS cloud services for their operations. The teams are: 
 
 (1) The Developer-Team and <br>
 (2) The Analyst-Team
 
-The developers team comprise the back end developers that will be work with servers to test and spin up applications. For now, only one member of the team know as John is being introduced.The analyst team on the other hand, are the data analysts working for the company.
+The developers team comprise the back end developers that will be working with servers to test and spin up applications. For now, only one member of the team know as John is being introduced.The analyst team on the other hand, are the data analysts working for the company.
 
 ## Tasks
 
@@ -22,7 +22,7 @@ Navigating to the Identity and access management (IAM) dashboard. The dashboard 
 <img width="1360" height="544" alt="image" src="https://github.com/user-attachments/assets/5850ce48-a867-4806-a72a-606710c2fa70" />
 
 
-The `create policy` button at the top right conner of the policy pane was clicked. EC2 instance was searched for, in the `select a service` section. **All EC2 Actions** check box was checked. **All** was selected in the `Resources` section.
+The `create policy` button at the top right corner of the policy pane was clicked. EC2 instance was searched for, in the `select a service` section. **All EC2 Actions** check box was checked. **All** was selected in the `Resources` section.
 
 
 <img width="1363" height="518" alt="image" src="https://github.com/user-attachments/assets/f223cd95-b527-4e98-8558-6989286b0723" />
@@ -40,7 +40,7 @@ The customer managed policy named developers was successfully created.
 
 ## Creating Policy for the Analyst Team
 
-A similar policy is to be created to grant members of the analyst team access to all `S3 bucket` roles which include viewing S3 bucket dashboard, creating S3 buckets, uploading files and folders for storage, deleting files and folders as required, deleting S3 buckets that are no longer needed and performing other operations that partains S3buckets. The following steps were taken to achieve the task:
+A similar policy is to be created to grant members of the analyst team access to all `S3 bucket` roles which include viewing S3 bucket dashboard, creating S3 buckets, uploading files and folders for storage, deleting files and folders as required, deleting S3 buckets that are no longer needed and performing other operations that partains S3 buckets. The following steps were taken to achieve the task:
 
 Navigating to the Identity and access management (IAM) dashboard. The dashboard was visited in order to access the policy pane.
 
@@ -86,7 +86,7 @@ John is a back end developer and needs access to EC2 privileges. Therefore he wo
 
 - user name: John
 - Provide user access to AWS management console check box was checked
-- I want to create IAM yser radio button was selected
+- I want to create IAM user radio button was selected
 - User password was provided
 - Set permissions: `Add user to group` radio botton was selected and John was added to the `Development-Team`
 - The  `create user button was finally clicked and the user "John" was successfuly created. The `CSV file` for John's credential was downloaded.
@@ -113,7 +113,7 @@ Mary has been introduced as a data analyst and should have S3 privileges. For he
 
 - user name: Mary
 - Provide user access to AWS management console check box was checked
-- I want to create IAM yser radio button was selected
+- I want to create IAM user radio button was selected
 - User password was provided
 - Set permissions: `Add user to group` radio botton was selected and Mary was added to the `Analyst-Team`
 - The  `create user button was finally clicked and the user "Mary" was successfuly created. The `CSV file` for Mary's credential was downloaded.
