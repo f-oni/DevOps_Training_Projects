@@ -73,6 +73,10 @@ echo "AWS IAM Management Completed"\n  echo "===================================
  exit 0
 
 ```
+See a link to the script:
+
+
+https://github.com/f-oni/DevOps_Training_Projects/blob/44ccb273e83628c1d288cf4129033f72f94694fb/AWS_IAM_Management/aws-management.sh
 
 ## Execution
 
