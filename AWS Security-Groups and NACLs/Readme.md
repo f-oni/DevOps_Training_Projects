@@ -8,12 +8,12 @@ The project demonstrates the implementatation and use cases of AWS Security Grou
 The following terminologies should be explained in connection with the project
 
 **Inbound Rules:** These outline the types of traffic that are permitted to use the resources. They serve as a virtual firewall, controlling the traffic going in and coming out of a VPC for one or more Amazon EC2 instances or other AWS services.
-**Outbound Rules:** These regulate the traffic that is permitted to depart from the resources or outgoing traffic. The destination for incoming traffic is dealt with by outbound rules.
-**Port:** A port on a computer serves as the communication endpoint for a particular process or service. It processes incoming and outgoing network traffic.
-**Stateful:** Security Groups are stateful, meaning if an inbound rule allows traffic, the return traffic is automatically permitted.
-**NACL Rules:** Rules that define what traffic is allowed or denied
-**CIDR:** A technique for allocating IP addresses and rerouting Internet Protocol
-**Ingress:** Inbound traffic or incoming network traffic.
+**Outbound Rules:** These regulate the traffic that is permitted to depart from the resources or outgoing traffic. The destination for incoming traffic is dealt with by outbound rules.<br>
+**Port:** A port on a computer serves as the communication endpoint for a particular process or service. It processes incoming and outgoing network traffic.<br>
+**Stateful:** Security Groups are stateful, meaning if an inbound rule allows traffic, the return traffic is automatically permitted.<br>
+**NACL Rules:** Rules that define what traffic is allowed or denied.<br>
+**CIDR:** A technique for allocating IP addresses and rerouting Internet Protocol.<br>
+**Ingress:** Inbound traffic or incoming network traffic.<br>
 **Egress:** Outbound traffic or outgoing network traffic.
 
 ## Project Tasks
@@ -70,8 +70,11 @@ Again, the public IP address of the instance was pated in the browser. The websi
 ## Removal of both inbound and outbound rules
 
 Deleting both the inbound and outbound rules means that no traffic can come into the instance and the instance can not send any traffic out.
-The outbound rule was already deleted in the previous task. to delete the inbound rule, the `inbound rules` tab was clicked and the the `edit inbound rule` button was clicked. the rule was deleted by clicking the `delete` button and finally, the `save rules` button was clicked.
+The outbound rule was already deleted in the previous task. To delete the inbound rule therefore, the `inbound rules` tab was clicked, and thereafter the `edit inbound rule` button was clicked. The rule was deleted by clicking the `delete` button and finally, the `save rules` button was clicked. An attempt to access the instance through its public IP address failed because there were no rules permiting traffic to reach the instance. Both the incoming and outgoing traffic were restricted.
 
+## Configuration of outbound rule for all traffic with no inbound rule
+In this scenario, A rule was added to allow outbound HTTP traffic. This was to enable the instance to initiate outgoing connection over HTTP. To effect this, the outbound tab was selected and the `edit outbound rule` button was clicked. HTTP was selected under type, 0.0.0.0/0 was chosen as the CIDR block and the `save rule` button was clicked. An attepmt was made to access the instance using its IP address. But the attempt failed.
+To test the outbound rule, the curl command was used from the instance to access a an external site. This worked successfully.
 
 
 ## Part two: Network Access Control Lists use cases implementation
@@ -80,4 +83,14 @@ The following scenarios were demonstrated:
 - Examining the effect of the default settings for both inbound and outbound rules for NACLs
 - Modification of the inbound rules to permit traffic from any IPV4 CIDR on all ports
 - Adjusting the outbound rules to allow traffic to all CIDRs. 
+
+## Examining the effect of the default settings for both inbound and outbound rules for NACLs
+
+On the VPC console, the `Network ACL` option was selected at the side bar and the `Create Network ACL` was clicked to begin the process. A name was provided for the Network ACL as `folu-acl-01`,  the VPC `folu-vpc-01` was selected and the `Create network ACL` button was clicked. To examine the default settings, the newly created network ACL was selected and the `inbound rules` tab was chosen. By default, all traffic from all ports was denied.Similarly, the outbound rules was examined and it was also noticed that all traffic from all ports were denied. 
+
+## Modification of the inbound rules to permit traffic from any IPV4 CIDR on all ports
+
+The network ACL was selected and the `inbound rules` tab was chosen. The `Edit inbound rules` button was clicked. On the next page, `Add new rule` button was clicked, a rule number `1` was assigned, `all traffic` was specified under `Type`, CIDR block 0.0.0.0/0 was selected as the source, `Allow` was selected and then the `save changes` button was clicked to effect the action. 
+
+### NACL Association with a Subnet
 
