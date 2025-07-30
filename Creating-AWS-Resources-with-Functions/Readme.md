@@ -1,4 +1,4 @@
-# Creating AWS Resources with Functions
+# Creating AWS Resources with Functions and Array
 
 The project provides a step-by-step guide on how to develop an automation script for AWS cloud resources deployment. Two functions were written in the script for the creation of EC2 instances and S3 buckets. The following shell scripting concepts were utilized to achieve the desired result.
 
