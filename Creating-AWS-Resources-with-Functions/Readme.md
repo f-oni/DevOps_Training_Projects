@@ -43,13 +43,18 @@ A key pair is require as part of the parameters for creating EC2 instances. A ne
 
 <img width="1365" height="565" alt="image" src="https://github.com/user-attachments/assets/2252c2eb-1883-4793-bf6a-46ca6f1049ee" />
 
+
 Under the `Private key file format` section, the `.pem` radio button was selected and the `create key pair` button was clicked.
+
 
 <img width="1227" height="570" alt="image" src="https://github.com/user-attachments/assets/768c25fa-8c66-4ee4-890e-fef8bf16263e" />
 
+
 The key pairs was successfully created.
 
+
 <img width="1130" height="426" alt="image" src="https://github.com/user-attachments/assets/7d2e613a-0d68-4d69-a3a8-cfecfe777b81" />
+
 
 
 ### A function for Provisioning EC2 Instances
