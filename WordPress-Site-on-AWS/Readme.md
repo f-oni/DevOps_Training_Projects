@@ -1,10 +1,10 @@
 # WordPress Site on AWS
 
-A project to deploy a fully functinal wordpress website that is scalable, secure and cost-effective using aws cloud resources. A fictitious company named `Digitalboost` was introduced in the project.
+A project to deploy a high-performance WordPress-based website that is scalable, secure and cost-effective using aws cloud resources. A fictitious company named `DigitalBoost` was introduced as a medium-sized marketing agency in the project.
 
 ## Objective
 
-The project is meant to demonstrate infrastructure provisioning on AWS to host a worpress site that is scalable, secrure and cost effective. AWS cloud resources will be provisioned in different availability zones to ensure that the site is highly available. Load balancer is leveraged upon for effective traffic distribution while auto scaling feature will be utilized for efficient scalability. Subnets and security groups will be used to enhance security by controlling access to the resources.
+The project is meant to demonstrate how to utilize networking, compute, object storage and databases infrastructure provisioning on AWS cloud to host a WordPress site that is scalable, secrure and cost effective. AWS cloud resources will be provisioned in different availability zones to ensure that the site is highly available. Load balancer is leveraged upon for effective traffic distribution while auto scaling feature will be utilized for efficient scalability. Subnets and security groups will be used to enhance security by controlling access to the resources.
 
 ## Project Overview 
 
@@ -613,7 +613,7 @@ In a real world scenario, the wordpress site deployed in the project, would have
 
 ## Conclusion
 
-The project demonstrated how to deploy a scalable, secure and cost-effective wordpress website. AWS Cloud resources were judiciously utilized to meet the project requirements. Automation, which is a core practice within the broader framework of DevOps, was, to a very large extent, a crucial part of the implementation. Other key DevOps processes were also employed in order to achieve success in the project. The project requirements were successfuly met and simulated.  
+The project demonstrated how to deploy a scalable, secure and cost-effective wordpress website. AWS Cloud resources such as networking, compute, object storage and database were judiciously utilized to meet the project requirements. Automation, which is a core practice within the broader framework of DevOps, was, to a very large extent, a crucial part of the implementation. Other key DevOps processes were also employed in order to achieve success in the project. The project requirements were successfuly met and simulated.  
 
  
 
