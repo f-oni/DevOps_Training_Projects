@@ -183,7 +183,7 @@ A custum VPC and associted general resources were first provisioned. Subsequentl
 
 #### Subnets Setup
 
-The following subnets were created two availability zones selected from eu-north-1a and eu-north-1b:
+The following subnets were created in the two availability zones selected from eu-north-1a and eu-north-1b:
 
 - wp-public-subnet-1a with `CIDR` block `10.0.1.0/24`
 - wp-public-subnet-1b with `CIDR` block `10.0.3.0/24`
@@ -192,7 +192,7 @@ The following subnets were created two availability zones selected from eu-north
 
 #### Security groups configuration
 
-The following security groups were set up for individual and group of resources:
+The following security groups were set up for the individual and group of resources to be deployed:
 
 1. `wp-alb-sg` for the application load balancer. Port 80 and 443 traffic were allowed from anywhere.
 2. `wp-ssh-sg` for resources that require SSH connection. Port 22 was allowed from within the VPC.
@@ -321,12 +321,72 @@ After a successful connection, the NAT gateway route was first tested by using t
 + A script named `lamp.sh` which contains programs to install wordpress requirements and dependencies was developed on the server.
 + The execute permit command `sudo chmod +x lamp.sh` was run to enable execution of the file.
 + The script was executed with the command `./lamp.sh`.
+
+<img width="865" height="358" alt="image" src="https://github.com/user-attachments/assets/230c3e75-eab5-4e5a-b50e-08a54ff398b4" />
+
 + The execution was successful.
+
+The script is shown below:
 
 <img width="1041" height="530" alt="image" src="https://github.com/user-attachments/assets/26e54a35-dfe4-4729-b1eb-1214388b3898" />
 
 
-<img width="865" height="358" alt="image" src="https://github.com/user-attachments/assets/230c3e75-eab5-4e5a-b50e-08a54ff398b4" />
+```
+#!/bin/bash
+
+#1. Up date package and create the html directory
+
+sudo yum update -y
+sudo mkdir -p /var/www/html
+
+# Mount the efs to the directory
+sudo yum install -y amazon-efs-utils
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-005732f3b0a52f925.efs.eu-north-1.amazonaws.com:/ /var/www/html
+
+
+
+#2. install apache 
+sudo yum install git httpd -y
+
+#3. Install php 8 and dependencies
+
+sudo yum install -y php php-common php-cli php-cgi php-curl php-gd php-intl php-zip php-mbstring php-xml php-json php-fpm php-mysqlnd php-gettext php-bcmath php-ctype php-fileinfo php-openssl php-pdo php-tokenizer
+ 
+#4. Install Mysql client
+
+sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+sudo dnf repolist enabled | grep "mysql.*-community.*"
+sudo dnf install -y mysql-community-server
+
+#5. Start and enable Apache and mysql server
+
+sudo systemctl start httpd
+sudo systemctl enable httpd 
+sudo systemctl start mysqld
+sudo systemctl enable mysqld
+
+
+#6. set directory permissions
+sudo usermod -a -G apache ec2-user
+sudo chown -R ec2-user:apache /var/www
+sudo chmod 2775 /var/www && find /var/www -type d -exec sudo chmod 2775 {} \;
+sudo find /var/www -type f -exec sudo chmod 0664 {} \;
+sudo chown apache:apache -R /var/www/html 
+
+#7. Download wordpress files, extract and copy to /var/www/html
+
+wget https://wordpress.org/latest.tar.gz
+tar -xzf latest.tar.gz
+sudo cp -r wordpress/* /var/www/html/
+
+
+#8. create the wp-config.php file
+sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+
+```
+
 
 
 
@@ -350,9 +410,7 @@ The success of the script was tested by confirming that that the EFS was mounted
 
 #### Wordpress file Configuration
 
-The `wp-config.php` file was opened with vim for configuration. The following information from the database (MYSQL) were filed in the appropriate spaces in the config file.
-
-<img width="1036" height="155" alt="image" src="https://github.com/user-attachments/assets/2574b788-2f1a-4b7d-aa49-aab5894534ac" />
+The `wp-config.php` file was opened with vim for configuration. The following information from the database (MYSQL) were filed into the appropriate places in the config file.
 
 ```
 'DB_NAME', 'wordpressdb'
@@ -362,6 +420,8 @@ The `wp-config.php` file was opened with vim for configuration. The following in
 
 ```
 The file was saved with `:wq` and apache was reloaded with the command `sudo systemctl relaod httpd`
+
+<img width="1036" height="155" alt="image" src="https://github.com/user-attachments/assets/2574b788-2f1a-4b7d-aa49-aab5894534ac" />
 
 #### Testing wordpress
 
@@ -497,19 +557,20 @@ To begin the simulation process, the ec2 instance used for the initial setup and
 #### Simulating the Scale-Out Feature
 
 The folowing steps were taken to simulate the scale out feature of the auto scaling
-- The load balancer's DNS was opened on many browser tabs to generate traffic.
-- The running instance was accessed through the bastion host and stress utility was install the command `sudo yum install stress-ng`.
-- The stress utility cammand `stress-ng --cpu 4 --timeout 60s` was run to increase the CPU utilization.
+- The load balancer's endpoint (DNS) was opened on many browser tabs to generate traffic.
+- The only running instance was accessed through the bastion host and the `stress utility` program was installed with  the command `sudo yum install stress-ng`.
+- To increase the CPU utilization, the cammand `stress-ng --cpu 4 --timeout 60s` was run. The outcome is shown below
 
   <img width="938" height="362" alt="image" src="https://github.com/user-attachments/assets/7ba35eb8-7fa8-429d-a5ce-f733298975da" />
 
 
-  **Observations** After a few minutes, the second instance was automatically deployed and the lifecycle showed both instances `InService` and were present in the target group.
+  **Observations** After a few minutes, the second instance was automatically deployed and the lifecycle tab showed that both instances were `InService` and were present in the target group.
 
   <img width="1349" height="513" alt="image" src="https://github.com/user-attachments/assets/6ac40b8e-e9b6-445c-b171-10678619deac" />
 
-- The CPU utilization for both instances were further increased with the stress utility and opening many more web pages of the wordpress dashboard of the digitalboost landing page.
-  **Observations** It was further observed that a third instance was also deployed by the auto scaling group.
+- The CPU utilization for both instances were further increased with the stress utility command and opening up many more web pages of the wordpress dashboard of the digitalboost landing page.
+
+  **Observations** It was further observed that a third instance was also automatically deployed by the auto scaling group.
 
   <img width="1352" height="515" alt="image" src="https://github.com/user-attachments/assets/b96f467a-58f7-48ba-91d4-05252e31995c" />
 
@@ -518,8 +579,10 @@ The folowing steps were taken to simulate the scale out feature of the auto scal
   #### Simulating the Scale-In Feature
   
   The folowing steps were taken to simulate the scale in feature of the auto scaling
+  
 -  The opened stress utility program was stopped on the first instance and some web pages were closed.
-  **Observations** It was also observed that after some times, one of the three running instances was automatically terminated.
+
+  **Observations** It was also observed that after some minutes, one of the three running instances was automatically terminated.
 
    <img width="1366" height="528" alt="image" src="https://github.com/user-attachments/assets/99bebc86-b257-47f4-a7cb-41be426ab6f6" />
 
@@ -528,12 +591,17 @@ The folowing steps were taken to simulate the scale out feature of the auto scal
 
 -  Finally, the stress utility program was stopped on the second instance and only one browser tab was opened.
   
-   **Observations** Again, one of the remaining two running instances was terminated automatically.
+   **Observations** Again, one of the remaining two running instances was terminated automatically by the auto scaling feature.
 
    <img width="1364" height="583" alt="image" src="https://github.com/user-attachments/assets/cc083fdd-0a52-4673-af30-a31364c4a463" />
 
    
-   **Inference** The simulation process successfully demonstrated that the auto scaling feature was able to respond to traffic demands by scaling out and scaling in as required. 
+   **Inferences:**
+   
+   The folowing inferences were draw from the simulation process:
+   
+    1. The simulation process successfully demonstrated that the auto scaling feature was able to respond to traffic demands by scaling out and scaling in as required.
+    2. The number of instances were dynamically scaled within the boundary of the desired set capacities. The instances were neither scaled beyond the maximum desired capacity nor were they scaled below the minimum desired capacity.
 
 ### Step 6: DNS and SSL Consideration
 
@@ -545,7 +613,7 @@ In a real world scenario, the wordpress site deployed in the project, would have
 
 ## Conclusion
 
-The project demonstrated how to deploy a scalable, secure and cost-effective wordpress website. AWS Cloud resources were judiciously utilized to meet the project requirements. The project requirements were successfuly met and simulated.  
+The project demonstrated how to deploy a scalable, secure and cost-effective wordpress website. AWS Cloud resources were judiciously utilized to meet the project requirements. Automation, which is a core practice within the broader framework of DevOps, was, to a very large extent, a crucial part of the implementation. Other key DevOps processes were also employed in order to achieve success in the project. The project requirements were successfuly met and simulated.  
 
  
 
