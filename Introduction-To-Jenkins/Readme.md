@@ -5,6 +5,10 @@ Jenkins is an open-source automation server widely used in software development 
 1. Installation and configuration
 2. Getting started with Jenkins Dashboard
 3. Creating Jenkins Jobs
+4. Connecting to source code management
+5. Creating Jenkins Pipeline jobs
+6. CI/CD with docker and Jenkins
+   
 
 
 ## Installation and configuration
@@ -120,6 +124,52 @@ The Jenkins dashboard was accessed through a web browser by entering the url `ht
 + The console output showed that the job `finished successfully`.
 
   <img width="973" height="502" alt="image" src="https://github.com/user-attachments/assets/919d037b-3143-4add-8820-8dee225cfcba" />
+
+
+## Connecting Jenkins to Source Code Management
+
+Source code management (SCM) is the practice of tracking, organizing, and controlling changes to a software project's source code, primarily through version control systems (VCS). Source code management (SCM) systems are tools that help teams collaborate on and modify the source code repository of their projects. These tools work by tracking changes to a code repository over time. Examples of SCM tools are Git, Subversion and Mercurial. Git, the most popular,  is an open-source source code management tool designed for distributed version control and collaboration. GitHub is a popular web-based platform that provides a hosting service for Git repositories. It builds upon Git's functionality by offering a centralized, cloud-based environment. This part of the project focused on connecting github to Jenkins for automated builds. The steps listed below were followed:
+
+### Creating Personal Access Token (PAT) on Github 
+
+On GitHub, the `developer settings` of the GitHub settings was selected.
+`Tokens(classic)` was chosen and followed by `generate new token`.
+A name was given to the PAT as `jenkins-github`, an expiration date was set and the scope was equally set.
+The token was generated and copied to be used in Jenkins
+
+### Adding Credential to Jenkins and connecting it to GitHub
+
+On the Jenkins dashboard, `manage Jenkins` was selected and `Credentials` button was clicked.
+Under `stores scoped to Jenkins` section, global(domain) was chosen.
+The `add credential` button was clicked to open the next page for filling the PAT details.
+The username, password and other details were filled out and the create button was clicked to complete the process.
+Jenkins and GitHub are now connected with PAT
+
+### Pulling Code from SCM using a Build Trigger
+
+A repository with the name `DigitalBoost` is to be cloned into a project in jenkins.
+The `Git plugin` was first confirmed to have been installed under the installed plugins.
+A `freestyle project` was selected and  the project was given a name `digi-app`.
+On the configuration page, under source code management section, `Git` was selected, the repository url `https://github.com/f-oni/DigitalBoost.git` was supplied and the credential added in the previous step was selected.
+`*/main` was chosen as the branch to build.
+Poll SCM was chosen as the build trigger and the schedule provided was `H/3 * * * *`. which translates to polling being done every 3 minutes.
+The selections for the project were applied and saved
+
+### Testing SCM connection with Jenkins and Build trigger
+
+The `Readme.md` file of the DigitalBoost` repository on GitHub updated and the changes were committed. 
+The committed change on github automatically triggered a build process on jenkins.
+The build was succefull as shown on console output
+The `html` file was updated after some minutes. As soon as the change was committed, a second build process got triggered on Jenkins. Again, the second build was successfull. 
+The two succesful builds showed that the connection between Github and Jenkins was successful. It also helped to validate that the build trigger worked as expected.
+
+## Creating a Pipeline job and script
+
+
+
+
+
+
 
 
 ## Project Challenges
