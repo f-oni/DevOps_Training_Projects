@@ -275,6 +275,12 @@ A Jenkins Pipeline job allows for the creation and management of continuous deli
 <img width="1296" height="559" alt="image" src="https://github.com/user-attachments/assets/e733ceed-59df-42d6-9a90-45d771e3b6e4" />
 
 
+## Implementing CI/CD with docker and Jenkins
+
+Implementing CI/CD (Continuous Integration and Continuous Delivery/Deployment) with Jenkins and Docker involves using Jenkins to orchestrate the automation of building, testing, and deploying applications and Docker for containerization to ensure consistency across environments. Git was used as the source code management.
+
+
+
 
 ## Project Challenges
 
