@@ -24,7 +24,7 @@ The repository url is shown below
 ## Freestyle job creation
 
 + On the Jenkins server dashboard, the `New Item` on the right hand pane was selected.
-+ A name `my-first-job` was given to the job, `freestyle project was selected and the `Ok` button was clicked to proceed to the configuration page.
++ A name `my-first-job` was given to the job, `freestyle project` was selected and the `Ok` button was clicked to proceed to the configuration page.
 
 <img width="1344" height="619" alt="image" src="https://github.com/user-attachments/assets/17d4bd40-3ea8-49b6-ba43-4f6c2430f8ec" />
 
@@ -63,7 +63,8 @@ An inbound rule was added on the ec2 instance used as the Jenkins sever to allow
 - `Just the push event` was chosen as the event to trigger the webhook
 
 
-<img width="1239" height="637" alt="image" src="https://github.com/user-attachments/assets/e508635e-759c-4f8a-9f0c-1cca041de813" />
+<img width="1355" height="661" alt="image" src="https://github.com/user-attachments/assets/52bab5ca-3c1c-4fc7-be1a-5c2f018aa498" />
+
 
 - The webhook connection to the server was tested by clicking on `recent delivery`. The connection was successful with a status code of `200`
 
