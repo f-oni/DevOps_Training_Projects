@@ -11,27 +11,79 @@ The syntax uses a Domain-Specific Language (DSL) based on Groovy, designed to be
 The Scripted Pipeline is based on the Groovy scripting language. It offers greater flexibility and control over the pipeline logic. However, it requires a better understanding of Groovy scripting for the implementation of the complex code. Scripted pipelines are typically defined within a node { ... } block in a Jenkinsfile.
 
 ## Creating A Pipeline Job
-On the Jenkins dashboard, `New Item` was selected in the left menu to create a new pipeline job
-A name `My pipelie job` was given and pipeline project was selected and the `OK` button was clicked.
-On the configuration page, the check box preceeding `GitHub hook trigger for GITScm Polling` was checked.
-The selection was applied and saved
+
++ On the Jenkins dashboard, `New Item` was selected in the left menu to create a new pipeline job
++ A name `My pipelie job` was given and pipeline project was selected and the `OK` button was clicked.
+
+  <img width="1366" height="648" alt="image" src="https://github.com/user-attachments/assets/1465b9f3-0fcb-4ee3-a7f3-110d7416103b" />
+
++ On the configuration page, the check box preceeding `GitHub hook trigger for GITScm Polling` was checked.
+
+  <img width="1247" height="656" alt="image" src="https://github.com/user-attachments/assets/af4136e8-5f5e-4d4d-8f96-de0545ca636c" />
+
++ The selection was applied and saved.
+
 
 ## Writing Jenkins Pipeline Script
 
 The script below was provided for the implememtation
 
+<img width="1364" height="643" alt="image" src="https://github.com/user-attachments/assets/0b626ff7-fecc-4986-b336-877896f67f68" />
+
+
 ### Script Analysis
 
- **Agent Configuration:** The agent in the script was configured as `agent any` which means that the pipeline can run on any available agent
- **Stages:** Defines the various stages of the pipeline.
- **Stage 1 (Connects To Github):** This stage involeves a step to check out code from the specified Git repository `https://github.com/f-oni/jenkins-scm.git'. The main branch was also specified in the stage
- **Stage 2 (Build Docker Image):**  The stage 2 builds a docker image named 'dockerfile' using the source code obtained from GtHub repository. The shell ('sh') was used to run the **'docker build'** command.
- **Stage 3 stage('Run Docker Container'):** The stage 3 runs a docker container named **nginx** in detached mode **('-itd')** and the container is mapped to port 8081 on the host machine. The image used to run the container was the one built in stage 2.
- To generate syntax for the github repository to be used in stage 1, the `pipeline syntax` button was clicked. `Chckout: Checkout from version control` was selected from the drop down. The github repository url was provided and the main branch was specified. Finaly, `Generate pipeline script` button was clicked to provide the syntax. The generated syntax was copied and pasted in the appropriate space in stage 1.
+-  **Agent Configuration:** The agent in the script was configured as `agent any` which means that the pipeline can run on any available agent
+-   **Stages:** Defines the various stages of the pipeline.
+-    **Stage 1 (Connects To Github):** This stage involeves a step to check out code from the specified Git repository `https://github.com/f-oni/jenkins-scm.git'. The main branch was also specified in the stage
+-  **Stage 2 (Build Docker Image):**  The stage 2 builds a docker image named 'dockerfile' using the source code obtained from GtHub repository. The shell ('sh') was used to run the **'docker build'** command.
+- **Stage 3 stage ('Run Docker Container'):** The stage 3 runs a docker container named **nginx** in detached mode **('-itd')** and the container is mapped to port 8081 on the host machine. The image used to run the container was the one built in stage 2.
+
+ ### Generating Syntax for Stage 1
+ 
+ To generate syntax for the github repository to be used in stage 1, the `pipeline syntax` button was clicked. 
+ 
++ `Checkout: Checkout from version control` was selected from the drop down.
+
+  <img width="1348" height="733" alt="image" src="https://github.com/user-attachments/assets/57202777-9cfc-43e0-9fa9-1d4a383a6e8d" />
+
++ The github repository url was provided and the main branch was specified.
+
+  <img width="1366" height="657" alt="image" src="https://github.com/user-attachments/assets/67022a09-5907-4ed9-b0d7-0d341ef3423e" />
+
++ Finaly, `Generate pipeline script` button was clicked to provide the syntax.
+
+  <img width="1364" height="645" alt="image" src="https://github.com/user-attachments/assets/bf4f5e4c-97bb-41d7-9ef1-9485e661bc9d" />
+
++ The generated syntax was copied and pasted in the appropriate space in stage 1.
+
+  <img width="1362" height="637" alt="image" src="https://github.com/user-attachments/assets/906837c4-bb8a-4a3b-b6ea-ae0049f169a9" />
+
 
 ## Docker Installation
 
-For Jenkins to run docker commands, docker must be installed on the server. The installation was done with the script below:
+For Jenkins to run docker commands, docker must be installed on the server. 
+
+The installation was done with the script below:
+
+```
+ sudo apt-get update -y
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+sudo systemctl status docker
+
+```
+
 
 + The file was made executable with the command `chmod u+x docker.sh`
 + The script was executed with the command `./docker.sh`
@@ -44,7 +96,20 @@ Two files were provided in the repository named `jenkins-scm`. The files are
 - index.html
 
 
-  The content of the dockerfile is shown below
+  The content of the dockerfile is shown below:
+
+  ```
+  # Use the official NGINX base image
+  FROM nginx:latest
+  # Set the working directory in the container
+  WORKDIR  /usr/share/nginx/html/
+  # Copy the local HTML file to the NGINX default public directory
+  COPY index.html /usr/share/nginx/html/
+  # Expose port 80 to allow external access
+  EXPOSE 80
+
+
+  ```
 
 
   The index.html file contains the following text as shown
@@ -87,7 +152,7 @@ Two files were provided in the repository named `jenkins-scm`. The files are
     
     **Remediation:** The other project connected to the webhook was disconnected and that solved the problem
     
-3. The port 8081 that was specified in the script was already allocated. The script returned `error 125`
+3. The port 8081 that was specified in the script was already allocated. The script returned with `error 125`
 
     <img width="1354" height="661" alt="image" src="https://github.com/user-attachments/assets/dfab1737-e2c3-45ba-8ccf-c4352de34c3b" />
 
@@ -98,4 +163,4 @@ Two files were provided in the repository named `jenkins-scm`. The files are
 
 
   ## Conclusion
-  The project succefully demonstrated how to use Jenkins pipeline to implement Continuous integration and continuous delivery. The pipelin script automated the whole process.
+  The project successfully demonstrated how to use Jenkins pipeline to implement Continuous integration and continuous delivery. The pipeline script automated CICD process.
