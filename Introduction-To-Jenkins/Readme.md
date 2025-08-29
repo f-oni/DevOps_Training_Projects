@@ -275,12 +275,162 @@ A Jenkins Pipeline job allows for the creation and management of continuous deli
 <img width="1296" height="559" alt="image" src="https://github.com/user-attachments/assets/e733ceed-59df-42d6-9a90-45d771e3b6e4" />
 
 
-## Implementing CI/CD with docker and Jenkins
+## Implementing CI/CD with Jenkins and Docker
 
-Implementing CI/CD (Continuous Integration and Continuous Delivery/Deployment) with Jenkins and Docker involves using Jenkins to orchestrate the automation of building, testing, and deploying applications and Docker for containerization to ensure consistency across environments. Git was used as the source code management.
+Implementing CI/CD (Continuous Integration and Continuous Delivery/Deployment) with Jenkins and Docker involves using Jenkins to orchestrate the automation of building, testing, and deploying applications and Docker for containerization to ensure consistency across environments. 
+
+**Continuous Integration:** It is implemented using Jenkins, which will automatically build and test our application every time code changes are made.
+
+**Continuous Delivery/Deployment:**  Jenkins was used to automatically deploy the application to Docker registry when the build phase was successful, ensuring that the latest version of the application is always available.
+
+**Docker:** To make the application more portable and scalable, it was containerized using Docker. 
+
+**Git:**  Git was used to manage the source code of the application, making it easier to collaborate and version-control changes.
+
+### Steps
+
+1.  `jenkins` user must be added to the `docker group`
+2. Docker plugins must be installed on the Jenkins server
+3. Docker registry credential addition to Jenkins server
+4. Github repository for the project
+5. Pipeline script development
+6. Verification
+
+
+#### Step 1: Adding `jenkins` user to the `docker group`
+
+  + Jenkins user was added to the docker group with the command `sudo usermod -aG docker jenkins`
+  + The docker group members was confirmed with the command `getent group docker`. The ouput shows that the `jenkins` user was successfully added.
+
+<img width="736" height="410" alt="image" src="https://github.com/user-attachments/assets/05e192eb-55dd-4aaf-941b-307383cb87a8" />
+
+
+#### Step 2: Docker plugins must be installed on the Jenkins server
+
+The following plugins were installed on the Jenkins sever:
+
+- docker: A plugin to integrate Jenkins with Docker
+- Docker Pipeline: A plugin required to build and and use docker containers from pipelines.
+
+  <img width="1296" height="561" alt="image" src="https://github.com/user-attachments/assets/142d9f41-9c0c-484f-84fb-ff0fe2638d3f" />
+
+  <img width="1288" height="543" alt="image" src="https://github.com/user-attachments/assets/761928f8-02be-477b-9cbd-4ff24a4f5762" />
 
 
 
+#### Step 3: Docker registry credential addition to Jenkins server
+
+A Personal Access Token (PAT) was created on the docker registery and added to the Jenkins server
+The personal access token was created from the user settings. A name `docker-jenkins` was given to the token. The access permission set was `Read & Write`.
+
+<img width="1366" height="584" alt="image" src="https://github.com/user-attachments/assets/adb2cc51-c3f1-4cef-9c5d-8d1b5088e319" />
+
+
+<img width="1317" height="504" alt="image" src="https://github.com/user-attachments/assets/539d0d03-a79d-46d7-b718-267a5c94399e" />
+
+
+The PAT was added to the Jenkins server by navigating to the credential section of the `manage Jenkins` dashboard.
+
+
+<img width="1276" height="542" alt="image" src="https://github.com/user-attachments/assets/06794caa-b783-42b6-a84f-de7deaebe98b" />
+
+
+<img width="1301" height="500" alt="image" src="https://github.com/user-attachments/assets/70522dab-b08e-4836-b684-02dc86f617e0" />
+
+
+
+#### Step 4: Github repository for the project
+
+A github repository with the name `web-test` was created with the following files:
+
++ Index.html
++ Readme.md
++ Dockerfile
+
+<img width="1365" height="632" alt="image" src="https://github.com/user-attachments/assets/85a880ac-918b-410c-ab29-9b306f7fcfca" />
+
+
+<img width="1366" height="654" alt="image" src="https://github.com/user-attachments/assets/83c6bd74-681b-4ab2-9667-a53822bc33ac" />
+
+
+
+#### Pipeline script development
+
+A pipeline job with the name `my-web-test` was created on the Jenkins server
+
+<img width="1269" height="569" alt="image" src="https://github.com/user-attachments/assets/bb9c8fd7-4aa0-4dc3-a246-20416f930925" />
+
+A pipiline script was developed to implement CICD in stages. 
+
+<img width="1282" height="568" alt="image" src="https://github.com/user-attachments/assets/deef65cb-ef83-4cd9-beea-a56f8e8ecff8" />
+
+The stages in the script are listed below:
+
+- The Checkout: To connect to github repository and download code or files needed for the project
+- The Build: A docker image is built based on the available dockerfile
+- The Push stage: The built docker image is  pushed to docker registry (docker hub)
+
+The complete pipeline script is shown below:
+
+```
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                // cloning the repository
+                git url: 'https://github.com/f-oni/web-test.git', branch: 'main'
+            }
+            
+        }
+        stage('Build docker image') {
+            steps {
+                script {
+                    // Define image name
+                    def imageName = "folu980/web-test:$BUILD_NUMBER"
+                    
+                    // Build the image
+                    sh "docker build -t ${imageName} ."
+                }
+            }
+        }
+        stage('Push to docker hub') {
+            steps {
+                script {
+                    //pushing image to the registry
+                    withCredentials([usernamePassword(credentialsId: 'Jenkins-docker-cred', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                        sh "echo \'$DOCKER_PASSWORD\' | docker login -u \'$DOCKER_USERNAME\' --password-stdin"
+                        sh "docker push folu980/web-test:$BUILD_NUMBER"
+                    }
+                }
+            }
+        }
+    }
+}
+
+```
+
+
+#### Verification
+
++ The pipeline ran successfully without any error
+
+<img width="1122" height="567" alt="image" src="https://github.com/user-attachments/assets/af44b429-07af-4dbc-9182-096faface57e" />
+
+
+<img width="1284" height="545" alt="image" src="https://github.com/user-attachments/assets/49b99fd8-1f61-49a3-877f-ad91501dad63" />
+
+
++ The image was successfully pushed to the specified docker repository.
+
+<img width="1366" height="595" alt="image" src="https://github.com/user-attachments/assets/cff8b79c-7b30-4926-8b97-b26f25e55fa0" />
+
++ An image that shows the pipeline overview is shown below
+
+<img width="1295" height="578" alt="image" src="https://github.com/user-attachments/assets/349d7a66-4bcc-4d97-a443-0dc9a7289161" />
+
++ A build trigger such as `Poll SCM` or `GitHub hook trigger for GTScm polling` would have been selected in a real-world scenario.
+  
 
 ## Project Challenges
 
